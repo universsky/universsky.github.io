@@ -9,7 +9,20 @@
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
     <link rel="shortcut icon" href="favicon.ico">
 
-    <title>THE SWORD OF</title>
+
+    <title>之剑的博客</title>
+
+
+    <script type="text/javascript">
+        if (localStorage.pagecount)
+        {
+            localStorage.pagecount=Number(localStorage.pagecount) +1;
+        }else{
+            localStorage.pagecount=1;
+        }
+        document.write("访问数: " + localStorage.pagecount + " time(s).");
+    </script>
+
 </head>
 
 <body>
@@ -17,8 +30,8 @@
 <!-- HEADER -->
 <div id="header_wrap" class="outer">
     <header class="inner">
-        <a id="forkme_banner" href="https://github.com/universsky">View on GitHub</a>
-
+        <a id="forkme_banner" href="https://github.com/universsky">View on GitHub </a>
+        <div id="visits"></div>
         <h1 id="project_title">之剑</h1>
         <h2 id="project_tagline">希望，大家都可以活成自己梦想中的样子，有酒有肉，有诗有梦</h2>
 
