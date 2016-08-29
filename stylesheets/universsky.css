@@ -1,46 +1,50 @@
-@keyframes earthRotate{
-    100%{
+@keyframes earthRotate {
+    100% {
         background-position: 250% 50%
     }
 }
 
-@keyframes moonRotate{
-    50%{
-        transform: translate(230px,-50%)
+@keyframes moonRotate {
+    50% {
+        transform: translate(230px, -50%)
     }
-    70%{
-        transform: translate(200px,-50%) scale(.5);
+    70% {
+        transform: translate(200px, -50%) scale(.5);
     }
-    95%{
+    95% {
         z-index: -1
     }
 }
 
-html,body{
+html, body {
     height: 100%;
 }
-body{
-    background: url(http://s3-us-west-2.amazonaws.com/i.cdpn.io/86939.BKJun.1ddac0a8-d1a3-4259-84d7-f59773c308c7.png)no-repeat center center/cover ;
+
+body {
+    background: url(./../images/background.png) no-repeat center center/cover;
     color: white;
     font-family: sans-serif;
 }
-h1{
+
+h1 {
     font-size: 36px
 }
-.earth-moon-wrap{
+
+.earth-moon-wrap {
     position: relative;
 }
-.earth{
+
+.earth {
     width: 160px;
     height: 160px;
     border-radius: 50%;
     overflow: hidden;
-    background: url(http://imageshack.com/a/img924/8243/QxUBld.jpg) 50% 50% / cover;
-    animation: earthRotate 3s infinite  linear
+    background: url(./../images/earth.jpg) 50% 50% / cover;
+    animation: earthRotate 3s infinite linear
 
 }
 
-.moon{
+.moon {
     position: absolute;
     left: -60px;
     top: 50%;
@@ -48,17 +52,17 @@ h1{
     animation: moonRotate 5s infinite linear;
 }
 
-.give-flex{
+.give-flex {
     display: flex;
     height: 87%;
     justify-content: center;
     align-items: center;
 }
 
-.give-center{
+.give-center {
     text-align: center;
 }
 
-.give-padding{
+.give-padding {
     padding: 15px
 }
