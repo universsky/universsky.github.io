@@ -1,49 +1,52 @@
 <!DOCTYPE html>
 <html class="no-js">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Basic ePubJS Example</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
-        <meta name="apple-mobile-web-app-capable" content="yes">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Basic ePubJS Example</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <meta name="apple-mobile-web-app-capable" content="yes">
 
 
-        <!-- EPUBJS Renderer -->
-        <script src="../build/epub.js"></script>
+    <!-- EPUBJS Renderer -->
+    <script src="../build/epub.js"></script>
+    <script src="../build/libs/zip.min.js"></script>
 
-        <style type="text/css">
+    <script src="../libs/jszip.min.js"></script>
 
-          body {
+    <style type="text/css">
+
+        body {
             overflow: hidden;
-          }
+        }
 
-          #main {
+        #main {
             position: absolute;
             width: 100%;
             height: 100%;
-          }
+        }
 
-          #area {
+        #area {
             width: 80%;
             height: 80%;
             margin: 5% auto;
             max-width: 1250px;
-          }
+        }
 
-          #area iframe {
+        #area iframe {
             border: none;
-          }
+        }
 
-          #prev {
+        #prev {
             left: 40px;
-          }
+        }
 
-          #next {
+        #next {
             right: 40px;
-          }
+        }
 
-          .arrow {
+        .arrow {
             position: absolute;
             top: 50%;
             margin-top: -32px;
@@ -55,35 +58,35 @@
             -webkit-user-select: none;
             -moz-user-select: none;
             user-select: none;
-          }
+        }
 
-          .arrow:hover {
+        .arrow:hover {
             color: #777;
-          }
+        }
 
-          .arrow:active {
+        .arrow:active {
             color: #000;
-          }
-        </style>
+        }
+    </style>
 
-         <script>
-            "use strict";
+    <script>
+        "use strict";
 
-            var Book = ePub("https://github.com/universsky/universsky.github.io/raw/master/poem.epub");
+        var Book = ePub("../books/poem.epub");
 
-        </script>
-    </head>
-    <body>
-        <div id="main">
-          <div id="prev" onclick="Book.prevPage();" class="arrow">‹</div>
-          <div id="area"></div>
-          <div id="next" onclick="Book.nextPage();" class="arrow">›</div>
-        </div>
+    </script>
+</head>
+<body>
+<div id="main">
+    <div id="prev" onclick="Book.prevPage();" class="arrow">‹</div>
+    <div id="area"></div>
+    <div id="next" onclick="Book.nextPage();" class="arrow">›</div>
+</div>
 
-        <script>
+<script>
 
-            Book.renderTo("area");
+    Book.renderTo("area");
 
-        </script>
-    </body>
+</script>
+</body>
 </html>
