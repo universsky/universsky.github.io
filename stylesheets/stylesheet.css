@@ -208,13 +208,12 @@ table {
 th {
   font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   padding: 10px;
-  background: #373737;
+  background: #727980;
   color: #fff;
  }
 
 td {
   padding: 10px;
-  border: 1px #373737;
  }
 
 form {
@@ -232,7 +231,7 @@ Full-Width Styles
 
 .inner {
   position: relative;
-  max-width: 640px;
+  max-width: 1024px;
   padding: 20px 10px;
   margin: 0 auto;
 }
@@ -255,7 +254,7 @@ Full-Width Styles
 #header_wrap {
   background: #212121;
   background: -moz-linear-gradient(top, #373737, #212121);
-  background: -webkit-linear-gradient(top, #373737, #212121);
+  background: -webkit-linear-gradient(top, #818a91, #212121);
   background: -ms-linear-gradient(top, #373737, #212121);
   background: -o-linear-gradient(top, #373737, #212121);
   background: linear-gradient(top, #373737, #212121);
