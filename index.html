@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html xmlns:wb="http://open.weibo.com/wb">
+<html>
 
 <head>
     <meta charset='utf-8'>
@@ -12,14 +12,17 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/stylesheet.css">
     <link rel="stylesheet" type="text/css" media="screen" href="css/solar.css">
     <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="epubjs/datatables/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="epubjs/datatables/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="epubjs/datatables/jquery.dataTables_themeroller.css">
 
     <script src="js/jquery.js"></script>
-    <script src="js/solar.js"></script>
     <script src="js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
-
+    <script src="epubjs/datatables/dataTables.bootstrap.js"></script>
+    <script src="epubjs/datatables/jquery.dataTables.js"></script>
+    <script src="js/solar.js"></script>
 
     <title>光剑免费图书馆</title>
-
 
     <style>
         li {
@@ -43,7 +46,7 @@
 <div id="main_content_wrap" class="outer">
     <section id="main_content" class="inner">
         <div class="container-fluid">
-            <h3>光剑免费图书馆</h3>
+            <h2>光剑免费图书馆</h2>
             <table id="dataTable" class="table table-hover table-striped">
                 <thead>
                 <tr>
@@ -4734,51 +4737,11 @@
             </table>
             <p style="color:#8c8c8c">如果您有好的书籍推荐, 请联系我.</p>
 
-
-            <hr>
-            <h3>個人博客</h3>
-
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>名称</th>
-                </tr>
-
-                </thead>
-
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td><a href="https://www.gitbook.com/@universsky/">GitBook作品</a></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td><a href="https://www.douban.com/people/universsky/notes">豆瓣文集</a></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td><a href="http://www.jianshu.com/users/c55c7a9c8de6/latest_articles">简书文章</a></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td><a href="https://segmentfault.com/blog/sword">SF专栏</a></td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td><a href="http://blog.sina.com.cn/universsky11">新浪博客</a></td>
-                </tr>
-                </tbody>
-
-            </table>
-
         </div>
-
-        <hr>
 
 
         <div class="container-fluid">
-            <h3>MOOC公开课</h3>
+            <h2>免费在线学习课程: MOOC公开课</h2>
             <div class="row-fluid">
                 <ul>
                     <li>
@@ -4846,84 +4809,90 @@
 
 
                     <li>
-                        <a href="https://www.futurelearn.com/">futurelearn: Learn anytime, anywhere </a>
+                        <a href="https://www.futurelearn.com/">Future Learn: Learn anytime, anywhere </a>
                     </li>
+
+                    <li><a href="http://www.xuetangx.com">学堂在线
+
+                    </a></li>
+                    <li><a href="https://www.edx.org/edxchina/">Edx
+                    </a></li>
+                    <li><a href="https://www.openlearning.com">Open Learning
+                    </a></li>
+                    <li><a href="http://study.163.com/">
+                        网易云课堂
+                    </a></li>
+                    <li><a href="http://www.icourse163.org/">
+                        中国大学MOOC
+                    </a></li>
+                    <li><a href="http://www.ewant.org">
+                        eWant
+                    </a></li>
+                    <li><a href="http://www.iversity.org">
+                        iversity
+                    </a></li>
+                    <li><a href="http://www.edu-infinity.org/">
+                        edu inifity
+                    </a></li>
+
                 </ul>
             </div>
 
-
-            <ul class="coop_list">
-                <li><a href="http://www.xuetangx.com" target="_blank"
-                       data-gaevent="index-coop-img:v4.0.0.0:academy">
-                    <img src="http://static.guokr.com/apps/academy/images/92612dce.xuetang.png" alt="学堂在线">
-                </a></li>
-                <li><a href="https://www.edx.org/edxchina/" target="_blank"
-                       data-gaevent="index-coop-img:v4.0.0.0:academy">
-                    <img src="http://static.guokr.com/apps/academy/images/64098a45.edx.png" alt="edx">
-                </a></li>
-                <li><a href="http://www.guokr.com/zone/prepare-for-uni-mooc/" target="_blank"
-                       data-gaevent="index-coop-img:v4.0.0.0:academy">
-                    <img src="http://static.guokr.com/apps/academy/images/da1b2b88.futurelearn.png"
-                         alt="futurelearn">
-                </a></li>
-                <li><a href="https://www.openlearning.com" target="_blank"
-                       data-gaevent="index-coop-img:v4.0.0.0:academy">
-                    <img src="http://static.guokr.com/apps/academy/images/19d93036.openlearning.png"
-                         alt="openlearning">
-                </a></li>
-                <li><a href="http://study.163.com/" target="_blank" data-gaevent="index-coop-img:v4.0.0.0:academy">
-                    <img src="http://static.guokr.com/apps/academy/images/7f564c2e.cloud.png" alt="云课堂">
-                </a></li>
-                <li><a href="http://www.icourse163.org/" target="_blank"
-                       data-gaevent="index-coop-img:v4.0.0.0:academy">
-                    <img src="http://static.guokr.com/apps/academy/images/63fe7e5a.chinesemooc.png" alt="中国大学MOOC">
-                </a></li>
-                <li><a href="http://www.ewant.org" target="_blank" data-gaevent="index-coop-img:v4.0.0.0:academy">
-                    <img src="http://static.guokr.com/apps/academy/images/545ee953.ewant.png" alt="ewant">
-                </a></li>
-                <li><a href="http://www.iversity.org" target="_blank"
-                       data-gaevent="index-coop-img:v4.0.0.0:academy">
-                    <img src="http://static.guokr.com/apps/academy/images/e93d0e72.iversity.png" alt="iversity">
-                </a></li>
-                <li><a href="http://www.edu-infinity.org/" target="_blank"
-                       data-gaevent="index-coop-img:v4.0.0.0:academy">
-                    <img src="http://static.guokr.com/apps/academy/images/002cc097.eduinfinity.png"
-                         alt="eduinifity">
-                </a></li>
-            </ul>
-
-
         </div>
+
+        <!--<hr>-->
+        <!--<h3>個人博客</h3>-->
+
+        <!--<table class="table table-hover">-->
+            <!--<thead>-->
+            <!--<tr>-->
+                <!--<th></th>-->
+            <!--</tr>-->
+
+            <!--</thead>-->
+
+            <!--<tbody>-->
+            <!--<tr>-->
+                <!--<td><a href="https://www.gitbook.com/@universsky/">GitBook作品</a></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td><a href="https://www.douban.com/people/universsky/notes">豆瓣文集</a></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td><a href="http://www.jianshu.com/users/c55c7a9c8de6/latest_articles">简书文章</a></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td><a href="https://segmentfault.com/blog/sword">SF专栏</a></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td><a href="http://blog.sina.com.cn/universsky11">新浪博客</a></td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+
+        <!--</table>-->
 
     </section>
 
 </div>
 
 
+
+
 <div class="container">
-    <div class="col-sm-2">
-        <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
 
-        <label class="btn-link"><a href="http://weibo.com/oranread">微博(東海陳光劍):</a></label>
-
-        <div>
-            <wb:follow-button uid="2102737845" type="red_1" width="100" height="60"></wb:follow-button>
-        </div>
-
-    </div>
 
 
     <div class="col-sm-2">
         <label class="btn-link">微信(universskyoh):</label>
         <div>
-            <img src="images/WeChat.jpg" height="200" width="150"></div>
+            <img src="images/WeChat.jpg" height="180" width="180"></div>
 
     </div>
 
     <div class="col-sm-2">
-        <label class="btn-link">赞赏支持:</label>
+        <label class="btn-link">赞赏支持(支付宝):</label>
         <div>
-            <img src="images/Alipay.jpg" height="200" width="150"></div>
+            <img src="images/Alipay.jpg" height="180" width="180"></div>
 
     </div>
 
@@ -4932,7 +4901,20 @@
                 href="http://mp.weixin.qq.com/mp/homepage?__biz=MzA5OTI2MTE3NA==&hid=1&sn=2bb4a3973295d1223a81456cec7a94be#wechat_redirect">公眾號(ols-lightshadow):</a></label>
         <div>
             <a href="http://mp.weixin.qq.com/mp/homepage?__biz=MzA5OTI2MTE3NA==&hid=1&sn=2bb4a3973295d1223a81456cec7a94be#wechat_redirect">
-                <img src="images/gongzhonghao.jpg" height="150" width="150"></a></div>
+                <img src="images/gongzhonghao.jpg" height="180" width="180"></a></div>
+    </div>
+
+    <div class="col-sm-2">
+
+
+        <label class="btn-link"><a href="http://weibo.com/oranread">微博(東海陳光劍):</a></label>
+
+
+        <!--<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>-->
+        <!--<div>-->
+        <!--<wb:follow-button uid="2102737845" type="red_1" width="100" height="60"></wb:follow-button>-->
+        <!--</div>-->
+
     </div>
 
 
@@ -5086,17 +5068,10 @@
     </div>
 </div>
 
-<link rel="stylesheet" type="text/css" href="epubjs/datatables/dataTables.bootstrap.css">
-<link rel="stylesheet" type="text/css" href="epubjs/datatables/jquery.dataTables.css">
-<link rel="stylesheet" type="text/css" href="epubjs/datatables/jquery.dataTables_themeroller.css">
-
-<script src="epubjs/datatables/dataTables.bootstrap.js"></script>
-<script src="epubjs/datatables/jquery.dataTables.js"></script>
-
 
 <script type="text/javascript">
     if (typeof jQuery == 'undefined') {
-        document.write(unescape("%3Cscript src='javascripts/jquery.js' type='text/javascript'%3E%3C/script%3E"));
+        document.write(unescape("%3Cscript src='js/jquery.js' type='text/javascript'%3E%3C/script%3E"));
     }
 
     $(function () {
