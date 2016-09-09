@@ -26,7 +26,7 @@ body {
 
   /* border-radius: 5px 0px 0px 5px; */
   border-radius: 5px;
-  background: #fff;
+  background: #f7f9e7;
   overflow: hidden;
   -webkit-transition: -webkit-transform .4s, width .2s;
   -moz-transition: -webkit-transform .4s, width .2s;
