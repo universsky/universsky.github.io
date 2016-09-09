@@ -81,7 +81,7 @@ button,
 input,
 select,
 textarea {
-    font-family: sans-serif;
+    font-family: Arial, Verdana, Sans-serif;
 }
 
 /*
@@ -420,7 +420,7 @@ input[type="reset"],
 input[type="submit"] {
     -webkit-appearance: button; /* 2 */
     cursor: pointer; /* 3 */
-    *overflow: visible;  /* 4 */
+    *overflow: visible; /* 4 */
 }
 
 /*
