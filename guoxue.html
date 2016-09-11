@@ -50,8 +50,7 @@
         <div class="container-fluid">
 
 
-            <h2>光剑免费图书馆</h2>
-
+            <h2><a href="index.html">光剑免费图书馆</a></h2>
 
             <!-- 百度分享 -->
             <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone"
@@ -82,34 +81,24 @@
             with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
 
 
-            <table class="table table-hover table-striped">
-                <tbody>
-                <tr> 
-                    <td><a href="classic.html"> 经典名著必读系列 </a></td>
+            <h4>二十四史</h4>
+            <table id="dataTable" class="table table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>书名</th>
+                </tr>
 
-                    <td><a href="english.html"> 英文原著 </a></td>
-                </tr>
-                <tr> 
-                    <td><a href="natural.html"> 自然科学 理工类 </a></td>
-                    <td><a href="social.html"> 人文社科类 </a></td>
-                </tr>
-                <tr>
-                    <td><a href="computer.html"> 计算机类 技术类 </a></td>
-                    <td><a href="china.html">中国历史文化</a> </td>
-                </tr>
-                <tr>
-                    <td><a href="24history.html"> 二十四史 </a></td>
-                    <td><a href="guoxue.html">国学典藏</a> </td>
-                </tr>
+                </thead>
+                <tbody>
 
 
                 </tbody>
 
             </table>
 
-            <h3 class="pull-left"><a href="total.html">馆藏图书检索</a></h3>
 
-
+            <p style="color:#8c8c8c">如果您有好的书籍推荐, 请联系我.</p>
 
         </div>
 
@@ -229,6 +218,10 @@
         <div><a href="http://weibo.com/oranread">
             <img src="images/logo.png" height="180" width="180"></a></div>
 
+        <!--<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>-->
+        <!--<div>-->
+        <!--<wb:follow-button uid="2102737845" type="red_1" width="100" height="60"></wb:follow-button>-->
+        <!--</div>-->
 
     </div>
 
@@ -264,7 +257,6 @@
     <footer class="inner">
         <p>关于作者: 陈光剑，江苏东海人, 号行走江湖一剑客，字之剑。程序员，诗人, 作家。( 邮箱:universsky@163.com )</p>
 
-        <p style="color:#8c8c8c">如果您有好的书籍推荐, 请联系我.</p>
         <article>
 
             <p>
@@ -275,8 +267,6 @@
             <p>三度格局,至善之人看到的是自我与世界,自我与整个人类之间的纽带</p>
 
         </article>
-
-
 
     </footer>
 </div>
@@ -422,12 +412,45 @@
     </div>
 </div>
 
+
+<!-- jquery, bootstrap,dataTables -->
+
 <script src="//cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+
 <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/datatables/1.10.10/css/dataTables.bootstrap.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/datatables/1.10.10/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/datatables/1.10.10/css/jquery.dataTables_themeroller.css" rel="stylesheet">
+
+
+<!--<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>-->
+
 <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="//cdn.bootcss.com/datatables/1.10.10/js/dataTables.bootstrap.min.js"></script>
+<script src="//cdn.bootcss.com/datatables/1.10.10/js/jquery.dataTables.min.js"></script>
+
 
 
 <script src="js/solar.js"></script>
 
+
+<script type="text/javascript">
+    if (typeof jQuery == 'undefined') {
+        document.write(unescape("%3Cscript src='js/jquery.js' type='text/javascript'%3E%3C/script%3E"));
+    }
+
+    $(function () {
+        $('#dataTable').DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": true,
+            "aLengthMenu": [10, 20, 50, 100, 200]
+        })
+
+    })
+</script>
 </body>
 </html>
