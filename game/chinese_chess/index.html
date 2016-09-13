@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>中国象棋-光剑免费图书馆</title>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="description" content="免费电子书 免费epub电子书 电子书大全 电子书下载 光剑免费图书馆 東海陳光劍的博客">
+
+
+
+    <link href="css/zzsc.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<div class="box" id="box">
+    <div class="chess_left">
+        <canvas id="chess">对不起，您的浏览器不支持HTML5，请升级浏览器至IE9、firefox或者谷歌浏览器</canvas>
+        <audio src="audio/click.wav" id="clickAudio" preload="auto"></audio>
+        <audio src="audio/select.wav" id="selectAudio" preload="auto"></audio>
+        <div>
+            <div class="bn_box" id="bnBox">
+                <input type="button" name="offensivePlay" id="tyroPlay" value="初级水平"/>
+                <input type="button" name="offensivePlay" id="superPlay" value="大师水平"/>
+                <input type="button" name="regret" id="regretBn" value="悔棋"/>
+                <input type="button" name="billBn" id="billBn" value="棋谱" class="bn_box"/>
+                <input type="button" name="stypeBn" id="stypeBn" value="换肤"/>
+                <input type="button" name="stypeBn" id="home" value="光剑免费图书馆" onclick="location='../../index.html'"/>
+            </div>
+        </div>
+    </div>
+    <div class="chess_right" id="chessRight">
+        <select name="billList" id="billList">
+        </select>
+        <ol id="billBox" class="bill_box">
+        </ol>
+    </div>
+    <div id="moveInfo" class="move_info"></div>
+</div>
+<script src="js/common.js"></script>
+<script src="js/play.js"></script>
+<script src="js/AI.js"></script>
+<script src="js/bill.js"></script>
+<script src="js/gambit.js"></script>
+</body>
+</html>
