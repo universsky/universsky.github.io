@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html manifest="offline.appcache">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <link rel="apple-touch-icon" href="images/icon.png"/>
+    <link rel="icon" type="image/png" href="images/icon.png"/>
+    <link rel="apple-touch-startup-image" media="(min-device-width: 768px) and (orientation: portrait)"
+          href="images/splash_iPad_portrait.png"/>
+    <link rel="apple-touch-startup-image" media="(min-device-width: 768px) and (orientation: landscape)"
+          href="images/splash_iPad_landscape.png"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>五子棋-光剑免费图书馆</title>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css"/>
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+    <link rel="stylesheet" href="style/style.css"/>
+    <script src="js/main.js" type="text/javascript"></script>
+</head>
+<body ontouchstart="">
+<div class="fullscreen-wrapper" id="happy-outer"><img src="images/happy.png" class="happy-face screen-center"/></div>
+<div class="fullscreen-wrapper" id="sad-outer"><img src="images/sad.png" class="sad-face screen-center"/></div>
+<div data-role="page" data-theme="w" id="game-page" class="no-background">
+    <div data-role="content" class="center no-padding">
+        <div id="game-region">
+            <header class="game-ult">五子棋-光剑免费图书馆</header>
+            <div id="game-info" class="game-ult ui-bar ui-bar-e"><span class="go black"></span> <span class="cont">到你走了</span>
+            </div>
+            <div id="main-but-group" class="game-ult"><a href="#new-game" data-rel="dialog" data-role="button"
+                                                         data-icon="grid">新游戏</a> <a href="#" id="undo-button"
+                                                                                          data-icon="back"
+                                                                                          data-role="button">悔棋</a>
+            </div>
+            <div id="other-but-group" class="game-ult"><a href="#help-page" id="help-button" data-icon="star"
+                                                          data-role="button">关于</a></div>
+            <div class="go-board" data-enhance="false"></div>
+            <table class="board" data-enhance="false">
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div id="game-won" data-theme="e" data-role="dialog">
+    <div data-role="header"><h4>你赢了!</h4></div>
+    <div data-role="content">
+        <div id="win-content"> 恭喜你! 你赢了比赛, 还要继续玩吗?</div>
+        <fieldset class="ui-grid-a">
+            <div class="ui-block-a">
+                <button type="submit" class="back-to-game" data-theme="c">返回</button>
+            </div>
+            <div class="ui-block-b"><a href="#new-game" data-rel="dialog" data-role="button" data-icon="grid"> Start A
+                New Game </a></div>
+        </fieldset>
+    </div>
+</div>
+<div id="new-game" data-theme="e" data-role="dialog" class="long-dialog">
+    <div data-role="header"><h4>新游戏</h4></div>
+    <div data-role="content">
+        <fieldset data-role="controlgroup" data-theme="e" id="mode-select">
+            <legend>选择对手</legend>
+            <input type="radio" name="radio-choice-1" id="radio-choice-1" value="vshuman"/> <label for="radio-choice-1">真人对弈</label>
+            <input type="radio" name="radio-choice-1" id="radio-choice-2" value="vscomputer"/> <label
+                for="radio-choice-2">计算机</label></fieldset>
+        <fieldset data-role="controlgroup" data-theme="e" id="color-select" class="vs-computer">
+            <legend>选择棋子颜色</legend>
+            <input type="radio" name="radio-choice-1" id="radio-choice-2" value="black" data-theme="a"/> <label
+                for="radio-choice-2">黑子</label> <input type="radio" name="radio-choice-1" id="radio-choice-1"
+                                                          value="white" data-theme="c"/> <label for="radio-choice-1">白子</label>
+        </fieldset>
+        <fieldset data-role="controlgroup" data-theme="e" id="level-select" class="vs-computer">
+            <legend>难度</legend>
+            <input type="radio" name="radio-choice-1" id="radio-choice-1" value="novice"/> <label for="radio-choice-1">初级</label>
+            <input type="radio" name="radio-choice-1" id="radio-choice-2" value="medium"/> <label for="radio-choice-2">中级</label>
+            <input type="radio" name="radio-choice-1" id="radio-choice-3" value="expert"/> <label for="radio-choice-3">高级</label>
+        </fieldset>
+        <fieldset class="ui-grid-a">
+            <div class="ui-block-a">
+                <button type="submit" class="back-to-game" data-theme="c">返回</button>
+            </div>
+            <div class="ui-block-b">
+                <button type="submit" id="start-game" data-theme="b">开始</button>
+            </div>
+        </fieldset>
+    </div>
+</div>
+<div data-role="dialog" data-theme="e" id="help-page">
+    <div data-role="header"><h4>About</h4></div>
+    <div data-role="content" class="thin-content"><p>I am Yujian and I made this game for fun. You can check out <a
+            href="http://yjyao.com">my website</a> for my other lame projects, or find out more about me. You can also
+        read a bit more about this game <a href="http://yjyao.com/2012/06/gomoku-in-html5.html">here</a>. Or, install
+        this game in Chrome and/or post your comments <a
+                href="https://chrome.google.com/webstore/detail/ngbpiahelilpgbnonpjfaoegaigopepa">here</a>.</p>
+        <p>Also, have fun beating/get beaten by my AI!</p></div>
+</div>
+<script type="text/javascript"> var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-32333016-1']);
+_gaq.push(['_trackPageview']);
+(function () {
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ga, s);
+})(); </script>
+</body>
+</html>

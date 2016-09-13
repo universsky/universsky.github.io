@@ -1,0 +1,718 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <style type="text/css">
+        #dbg {
+            font-family: "Helvetica", cursive, sans-serif;
+            border: 1px solid black;
+            width: 600;
+        }
+
+        body {
+            background: #000;
+            color: white;
+            font-family: Arial, Helvetica, Sans-serif;
+        }
+
+        a {
+            color: #009de9;
+            outline: none;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+    </style>
+
+    <link rel="shortcut icon" href="http://www.dougx.net/favicon.ico">
+    <title>战机游戏-光剑免费图书馆</title>
+
+    <!---- javascript includes --->
+    <!---- open license with citation to dougx.net--->
+    <script type="text/javascript" src="Sound.js"></script>
+
+    <script type="text/javascript" src="Background.js"></script>
+    <script type="text/javascript" src="Mouse.js"></script>
+    <script type="text/javascript" src="Loader.js"></script>
+    <script type="text/javascript" src="FloatyText.js"></script>
+    <script type="text/javascript" src="Keyboard.js"></script>
+    <script type="text/javascript" src="Collision.js"></script>
+
+    <script type="text/javascript" src="AfterEffect.js"></script>
+    <script type="text/javascript" src="PeaShooter.js"></script>
+    <script type="text/javascript" src="Laser.js"></script>
+    <script type="text/javascript" src="LevelDirector.js"></script>
+    <script type="text/javascript" src="Sortie.js"></script>
+    <script type="text/javascript" src="Enemy.js"></script>
+
+    <script type="text/javascript" src="Powerup.js"></script>
+    <script type="text/javascript" src="Shot.js"></script>
+    <script type="text/javascript" src="EnemyShot.js"></script>
+    <script type="text/javascript" src="Ship.js"></script>
+
+    <script type="text/javascript">
+
+        //
+        // thanks for viewing the code, feel free to reuse.
+        // if you do, please link to my site!  thanks!
+        //
+        var g_canvas;
+        var g_context;
+        var g_soundsLoaded;
+        var g_isChr;
+        var g_onscreenControls;
+        var g_paused;
+        var g_renderInterval;
+        var g_clockInterval;
+
+        var g_totalItems;
+        var g_itemsLoaded;
+
+        var g_background;
+        var g_foreground;
+
+        var g_ship;
+        var g_gameState;
+        var g_highScore;
+
+        var g_powerups;
+        var g_floatyText;
+        var g_projectiles;
+        var g_enemyProjectiles;
+        var g_enemies;
+        var g_afterEffects;
+        var g_rainbow;
+
+        var g_basicShotSound;
+        var g_laserShotSound;
+        var g_dinkSound;
+        var g_smallExplodeSound;
+        var g_bonusSound;
+        var g_explodeSound;
+        var g_artifact_chard_sound;
+        var g_double_sound;
+        var g_gem_sound;
+        var g_gun_sound;
+        var g_shot_sound;
+        var g_speed_sound;
+
+        var g_levelDirector;
+        var g_shotsFired;
+        var g_shotsRequired;
+        var g_accuracy;
+        var g_showAccuracy;
+        var g_enemiesDestroyed;
+
+
+        //
+        // main() is called once the game has loaded and the user has clicked
+        // on the "new game" button on the splash screen. This is a clean slate
+        // with no registered timers or event listeners.
+        //
+        function main() {
+            var level_1_loop = document.getElementById("level_1_loop");
+            var bossLoop = document.getElementById("boss_loop");
+
+            //dbg("engine = " + navigator.userAgent, false);
+            g_rainbow = new Array("yellow", "orange", "white", "red");
+
+            document.addEventListener('keydown', keyDown, false);
+            document.addEventListener('keyup', keyUp, false);
+
+            if (g_basicShotSound == null) {
+
+                g_basicShotSound = new Sound("basic_shot", 5);
+                g_laserShotSound = new Sound("laser", 5);
+                g_smallExplodeSound = new Sound("small_explode", 5);
+                g_bonusSound = new Sound("bonus_sound", 4);
+                g_explodeSound = new Sound("explode", 3);
+
+                g_artifact_chard_sound = new Sound("artifact_chard_sound", 2);
+                g_double_sound = new Sound("double_sound", 2);
+                g_gem_sound = new Sound("gem_sound", 4);
+                g_gun_sound = new Sound("gun_sound", 2);
+                g_shot_sound = new Sound("shot_sound", 3);
+                g_speed_sound = new Sound("speed_sound", 3);
+            }
+
+            g_highScore = 0;
+            g_gameState = "setup";
+            g_levelDirector = new LevelDirector();
+
+            //
+            // telling the level director to start will put the clock and
+            // render loops on interval timers
+            //
+            g_levelDirector.startLevel();
+        }
+
+        //
+        // map a sound name to a global audio object
+        //
+        function lookupSound(name) {
+            if (name == "double_sound")
+                return g_double_sound;
+            else if (name == "gem_sound")
+                return g_gem_sound;
+            else if (name == "gun_sound")
+                return g_gun_sound;
+            else if (name == "shot_sound")
+                return g_shot_sound;
+            else if (name == "speed_sound")
+                return g_speed_sound;
+
+            dbg("Failed sound lookup: " + name, false);
+
+            return null;
+        }
+
+        //
+        // the level director will kick off an interval that calls
+        // this function every 100ms
+        //
+        function clockLoop() {
+            if (g_paused)
+                return;
+
+            g_levelDirector.myClock += 100;
+            //dbg("Clock = " +  g_levelDirector.myClock, false);
+
+            g_levelDirector.launchSorties();
+            g_levelDirector.gameEvents();
+        }
+
+        //
+        // the LevelDirector will kick off an interval that calls this function
+        // which redraws the entire screen. that interval determines the game's
+        // fps.
+        //
+        function renderLoop() {
+            if (g_paused)
+                return;
+
+            g_background.render();
+            g_ship.render();
+
+            var remainingPowerups = new Array();
+            for (var i = 0; i < g_powerups.length; ++i) {
+                if (g_powerups[i].render()) {
+                    remainingPowerups.push(g_powerups[i]);
+                }
+                else delete g_powerups[i];
+            }
+            delete g_powerups;
+            g_powerups = remainingPowerups;
+
+            var remainingText = new Array();
+            for (var i = 0; i < g_floatyText.length; ++i) {
+                if (g_floatyText[i].render()) {
+                    remainingText.push(g_floatyText[i]);
+                }
+                else delete g_floatyText[i];
+            }
+            delete g_floatyText;
+            g_floatyText = remainingText;
+
+            var remainingEnemies = new Array();
+            for (var i = 0; i < g_enemies.length; ++i) {
+                if (g_enemies[i].render()) {
+                    remainingEnemies.push(g_enemies[i]);
+                }
+                else delete g_enemies[i];
+            }
+            delete g_enemies;
+            g_enemies = remainingEnemies;
+
+            var remainingProjectiles = new Array();
+            for (var i = 0; i < g_projectiles.length; ++i) {
+                if (g_projectiles[i].render()) {
+                    remainingProjectiles.push(g_projectiles[i]);
+                }
+                else delete g_projectiles[i];
+            }
+            delete g_projectiles;
+            g_projectiles = remainingProjectiles;
+
+            var remainingEnemyProjectiles = new Array();
+            for (var i = 0; i < g_enemyProjectiles.length; ++i) {
+                if (g_enemyProjectiles[i].render()) {
+                    remainingEnemyProjectiles.push(g_enemyProjectiles[i]);
+                }
+                else delete g_enemyProjectiles[i];
+            }
+            delete g_enemyProjectiles;
+            g_enemyProjectiles = remainingEnemyProjectiles;
+
+            var remainingAfterEffects = new Array();
+            for (var i = 0; i < g_afterEffects.length; ++i) {
+                if (g_afterEffects[i].render()) {
+                    remainingAfterEffects.push(g_afterEffects[i]);
+                }
+                else delete g_afterEffects[i];
+            }
+            delete g_afterEffects;
+            g_afterEffects = remainingAfterEffects;
+
+            g_levelDirector.renderSpecialText();
+
+            g_foreground.render();
+
+            if (g_onscreenControls) {
+                var ox = 40;
+                var oy = 300;
+                var ow = 30;
+
+                var tx = 8;
+                var ty = 22;
+
+                g_context.fillStyle = "yellow";
+                g_context.strokeStyle = "yellow";
+                g_context.strokeRect(ox, oy, ow, ow);
+                g_context.strokeRect(ox - 35, oy + 35, ow, ow);
+                g_context.strokeRect(ox + 35, oy + 35, ow, ow);
+                g_context.strokeRect(ox, oy + 70, ow, ow);
+                g_context.strokeRect(ox + 520, oy + 35, ow, ow);
+                g_context.strokeRect(ox + 270, oy + 35, ow, ow);
+
+                g_context.fillText("U", ox + tx, oy + ty);
+                g_context.fillText("L", ox - 35 + tx, oy + 35 + ty);
+                g_context.fillText("R", ox + 35 + tx, oy + 35 + ty);
+                g_context.fillText("D", ox + tx, oy + 70 + ty);
+                g_context.fillText("Z", ox + 520 + tx, oy + 35 + ty);
+                g_context.fillText("P", ox + 270 + tx, oy + 35 + ty);
+            }
+
+            g_ship.renderPowers();
+        }
+
+        //--------------------------- BEGIN MUSIC LOOPING FUNCTIONS-------------//
+
+        //
+        // no browser currently correctly implements the looping feature
+        // of the Autdio object yet, so we have to listen for the ended event
+        // on our background music and play it again
+        //
+        function start_level_1_loop(terminate) {
+            var level_1_loop = document.getElementById("level_1_loop");
+
+            if (terminate != undefined) {
+                if (terminate.toString() == "boss") {
+                    level_1_loop.volume = 0;
+                    level_1_loop.removeEventListener("ended", l1_loopit, true);
+                    return;
+                }
+                else if (terminate.toString() == "gameover") {
+                    level_1_loop.removeEventListener("ended", l1_loopit, true);
+                    level_1_loop.pause();
+                    return;
+                }
+            }
+
+            l1_loopit();
+        }
+
+        function l1_loopit() {
+            var level_1_loop = document.getElementById("level_1_loop");
+            level_1_loop.volume = 1;
+            level_1_loop.play();
+            level_1_loop.addEventListener("ended", l1_loopit, true);
+        }
+
+        function startBossLoop(terminate) {
+            var bossLoop = document.getElementById("boss_loop");
+
+            if (terminate != undefined && terminate.toString() == "end_boss") {
+                bossLoop.volume = 0;
+                bossLoop.removeEventListener("ended", bos_loopit, true);
+                return;
+            }
+
+            bos_loopit();
+        }
+        function bos_loopit() {
+            var bossLoop = document.getElementById("boss_loop");
+            bossLoop.volume = 1;
+            bossLoop.play();
+            bossLoop.addEventListener("ended", bos_loopit, true);
+        }
+
+
+        function startLevel2Loop(terminate) {
+            var penguinLoop = document.getElementById("level_2_loop");
+
+            if (terminate != undefined && terminate.toString() == "terminate") {
+                penguinLoop.volume = 0;
+                penguinLoop.removeEventListener("ended", l2_loopit, true);
+                return;
+            }
+            l2_loopit();
+        }
+
+        function l2_loopit() {
+            var penguinLoop = document.getElementById("level_2_loop");
+            penguinLoop.volume = 1;
+            penguinLoop.play();
+            penguinLoop.addEventListener("ended", l2_loopit, true);
+        }
+
+        //
+        // write message to debug area
+        //
+        function dbg(str, append) {
+            var dbgObj = document.getElementById("dbg");
+            dbgObj.innerHTML = append ? (dbgObj.innerHTML + str) : str;
+        }
+
+        //
+        // appends all game sounds to the document. called after the loading
+        // screen itself is loaded.  The GameSounds.php file does a base64_encode
+        // on the actual .ogg files residing on the server.  This is so the sound
+        // objects can be repeatedly re-initialized without a network hit. This
+        // is part of a workaround for Chrome because that browser does not
+        // correctly re-play short audio sounds (which is just about every sound
+        // effect in the game)
+        //
+        function loadGameSounds() {
+            var fileref = document.createElement('script')
+            fileref.setAttribute("type", "text/javascript")
+            fileref.setAttribute("src", "http://dougx.net/plunder/GameSounds.php")
+
+            var agent = navigator.userAgent;
+            if (agent.indexOf("MSIE") != -1) {
+                //
+                // IE9 does not support OGG so we have to load a special
+                // version of the file that has MP3 encoded sound
+                //
+                fileref.setAttribute("src", "GameSoundsIE9.php")
+            }
+
+            fileref.onload = function () {
+                g_soundsLoaded = true;
+            }
+
+            document.getElementsByTagName("head")[0].appendChild(fileref)
+        }
+
+        function pause() {
+            if (g_paused == null)
+                g_paused = false;
+
+            g_paused = !g_paused;
+
+            if (g_paused)
+                dbg("Game Paused", false);
+            else
+                dbg("", false);
+        }
+
+
+    </script>
+
+    <style type="text/css">
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<!--- bodyLoaded() follows resource loading and starts the splash screen
+                   and can be found in the Loader.js file --->
+
+<body onload="bodyLoaded();">
+
+<table cellpadding="0" border="0" cellspacing="0" frame="void">
+    <tr>
+        <td valign="top">
+
+            <canvas align="left" id="theCanvas" width="600" height="400">
+                <H2 align="center">
+                    Firefox, Opera, Chrome or other HTML5 compliant browser required.
+                    <br>
+                </H2>
+                <H3>
+                    <p align="center">
+                        This site requires a modern browser for graphics and sound effects.
+                        <br><br>
+                        A compliant browser can be downloaded from any of the following sites:
+                        <br>
+
+                        <a href="http://www.mozilla.com/en-US/firefox/firefox.html">Firefox</a>
+                        <br>
+                        <a href="http://www.opera.com/">Opera</a><br>
+                        <a href="http://www.google.com/chrome">Chrome</a>
+                </H3>
+            </canvas>
+        </td>
+    <tr>
+        <table>
+            <div id="dbg"></div>
+
+            <!--- put all of the game objects into the document which makes writing
+                  the load screen pretty trivial; a really simple loader.  as items
+                  load they call the itemLoaded() function which updates the load screen.
+                  Just remember to make this div small and hidden. --->
+
+
+            <div id="hidden" style="visibility:hidden; width:1px; height:1px; overflow:hidden">
+
+                <img id="splash_screen"
+                     src="splash_screen.jpg"
+                     onload="itemLoaded(this);">
+
+                <img id="loading"
+                     src="loading.png"
+                     onload="itemLoaded(this);">
+
+                <img id="title"
+                     src="title.png"
+                     onload="itemLoaded(this);">
+
+                <!--[if IE]>
+                <audio id="loading_music"
+                       src="loading_music.mp3"
+                       autoplay="true">
+                </audio>
+
+                <audio id="level_1_preloop"
+                       src="level_1_preloop.mp3"
+                       preload='true'>
+                </audio>
+
+                <audio id="level_1_loop"
+                       src="level_1_loop.mp3"
+                       preload='true'>
+                </audio>
+
+                <audio id="level_2_loop"
+                       src="level_2_loop.mp3"
+                       preload='true'>
+                </audio>
+
+                <audio id="level_passed"
+                       src="level_passed.mp3"
+                       preload='true'>
+                </audio>
+
+                <audio id="boss_loop"
+                       src="boss_loop.mp3"
+                       preload='true'>
+                </audio>
+
+                <![endif]-->
+
+                <!--[if !IE]> <-->
+                <audio id="loading_music"
+                       src="loading_music.ogg"
+                       autoplay="autoplay">
+
+                </audio>
+
+                <audio id="level_1_preloop"
+                       src="level_1_preloop.ogg"
+                       autobuffer='true'>
+                </audio>
+
+                <audio id="level_1_loop"
+                       src="level_1_loop.ogg"
+                       autobuffer='true'>
+                </audio>
+
+                <audio id="level_2_loop"
+                       src="level_2_loop.ogg"
+                       autobuffer='true'>
+                </audio>
+
+                <audio id="level_passed"
+                       src="level_passed.ogg"
+                       autobuffer='true'>
+                </audio>
+
+                <audio id="boss_loop"
+                       src="boss_loop.ogg"
+                       autobuffer='true'>
+                </audio>
+                <!--> <![endif]-->
+
+                <img id="starfield"
+                     src="starfield.jpg"
+                     onload="itemLoaded(this);">
+
+                <img id="foreground"
+                     src="foreground.png"
+                     onload="itemLoaded(this);">
+
+                <img id="ship_center"
+                     src="ship_center.png"
+                     onload="itemLoaded(this);">
+
+                <img id="ship_up_1"
+                     src="ship_up_1.png"
+                     onload="itemLoaded(this);">
+
+                <img id="ship_up_2"
+                     src="ship_up_2.png"
+                     onload="itemLoaded(this);">
+
+                <img id="ship_up_3"
+                     src="ship_up_3.png"
+                     onload="itemLoaded(this);">
+
+                <img id="ship_down_1"
+                     src="ship_down_1.png"
+                     onload="itemLoaded(this);">
+
+                <img id="ship_down_2"
+                     src="ship_down_2.png"
+                     onload="itemLoaded(this);">
+
+                <img id="ship_down_3"
+                     src="ship_down_3.png"
+                     onload="itemLoaded(this);">
+
+                <img id="ship_icon"
+                     src="ship_icon.png"
+                     onload="itemLoaded(this);">
+
+                <img id="foreground_light"
+                     src="foreground_light.png"
+                     onload="itemLoaded(this);">
+
+                <img id="sky"
+                     src="sky.jpg"
+                     onload="itemLoaded(this);">
+
+                <img id="speed_image"
+                     src="speed_image.png"
+                     onload="itemLoaded(this);">
+
+                <img id="gun_image"
+                     src="gun_image.png"
+                     onload="itemLoaded(this);">
+
+                <img id="shot_image"
+                     src="shot_image.png"
+                     onload="itemLoaded(this);">
+
+                <img id="double_image"
+                     src="double_image.png"
+                     onload="itemLoaded(this);">
+
+                <img id="gem_image"
+                     src="gem_image.png"
+                     onload="itemLoaded(this);">
+
+                <img id="enemy_small"
+                     src="enemy_small.png"
+                     onload="itemLoaded(this);">
+
+                <img id="enemy_small_special"
+                     src="enemy_small_special.png"
+                     onload="itemLoaded(this);">
+
+                <img id="enemy_small_2"
+                     src="enemy_small_2.png"
+                     onload="itemLoaded(this);">
+
+                <img id="enemy_small_2_special"
+                     src="enemy_small_2_special.png"
+                     onload="itemLoaded(this);">
+
+                <img id="enemy_small_3"
+                     src="enemy_small_3.png"
+                     onload="itemLoaded(this);">
+
+                <img id="enemy_small_4"
+                     src="enemy_small_4.png"
+                     onload="itemLoaded(this);">
+
+                <img id="enemy_small_4_special"
+                     src="enemy_small_4_special.png"
+                     onload="itemLoaded(this);">
+
+                <img id="enemy_artifact"
+                     src="enemy_artifact.png"
+                     onload="itemLoaded(this);">
+
+                <img id="enemy_artifact_2"
+                     src="enemy_artifact_2.png"
+                     onload="itemLoaded(this);">
+
+                <img id="ship_death_1"
+                     src="ship_death_1.png"
+                     onload="itemLoaded(this);">
+
+                <img id="ship_death_2"
+                     src="ship_death_2.png"
+                     onload="itemLoaded(this);">
+
+                <img id="ship_death_3"
+                     src="ship_death_3.png"
+                     onload="itemLoaded(this);">
+
+                <img id="ship_death_4"
+                     src="ship_death_4.png"
+                     onload="itemLoaded(this);">
+
+                <img id="ship_death_5"
+                     src="ship_death_5.png"
+                     onload="itemLoaded(this);">
+
+                <img id="ship_death_6"
+                     src="ship_death_6.png"
+                     onload="itemLoaded(this);">
+
+                <img id="ship_death_7"
+                     src="ship_death_7.png"
+                     onload="itemLoaded(this);">
+
+                <img id="splode_1"
+                     src="splode_1.png"
+                     onload="itemLoaded(this);">
+
+                <img id="splode_2"
+                     src="splode_2.png"
+                     onload="itemLoaded(this);">
+
+                <img id="splode_3"
+                     src="splode_3.png"
+                     onload="itemLoaded(this);">
+
+                <img id="splode_4"
+                     src="splode_4.png"
+                     onload="itemLoaded(this);">
+
+                <img id="splode_5"
+                     src="splode_5.png"
+                     onload="itemLoaded(this);">
+
+                <img id="splode_6"
+                     src="splode_6.png"
+                     onload="itemLoaded(this);">
+
+                <img id="splode_7"
+                     src="splode_7.png"
+                     onload="itemLoaded(this);">
+
+                <img id="artifact_chard_image"
+                     src="artifact_chard.png"
+                     onload="itemLoaded(this);">
+
+                <img id="artifact_skull_image"
+                     src="artifact_skull.png"
+                     onload="itemLoaded(this);">
+
+                <img id="command_ship"
+                     src="command_ship.png"
+                     onload="itemLoaded(this);">
+
+
+            </div> <!--- end hidden dev that contains all game graphics/sound --->
+
+            <script src="/gg_bd_ad_720x90.js" type="text/javascript"></script>
+            <script src="/follow.js" type="text/javascript"></script>
+
+
+</body>
+</html>
+
