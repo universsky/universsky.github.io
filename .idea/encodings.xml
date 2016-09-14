@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+    <component name="Encoding">
+        <file url="file://$PROJECT_DIR$/game/chinese_chess/js/AI.js" charset="UTF-8"/>
+        <file url="file://$PROJECT_DIR$/game/chinese_chess/js/bill.js" charset="UTF-8"/>
+        <file url="file://$PROJECT_DIR$/game/chinese_chess/js/common.js" charset="UTF-8"/>
+        <file url="file://$PROJECT_DIR$/game/chinese_chess/js/gambit.js" charset="UTF-8"/>
+        <file url="file://$PROJECT_DIR$/game/chinese_chess/js/play.js" charset="UTF-8"/>
+        <file url="file://$PROJECT_DIR$/game/galactic_plunder/index.html" charset="UTF-8"/>
+        <file url="file://$PROJECT_DIR$/game/super_mario/index.html" charset="UTF-8"/>
+    </component>
+</project>
