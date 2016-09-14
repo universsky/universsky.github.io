@@ -10794,7 +10794,7 @@
                 return this.props.cur ? null : c["default"].createElement("div", {
                     className: h["default"].logo,
                     style: {display: this.state.display}
-                }, c["default"].createElement("div", {className: (0, f["default"])((e = {bg: !0}, o(e, h["default"].dragon, !0), o(e, this.state.style, !0), e))}), c["default"].createElement("p", null, "俄罗斯方块", c["default"].createElement("br", null), "TETRIS"))
+                }, c["default"].createElement("div", {className: (0, f["default"])((e = {bg: !0}, o(e, h["default"].dragon, !0), o(e, this.state.style, !0), e))}), c["default"].createElement("p", null, "俄罗斯方块", c["default"].createElement("br", null), "光剑免费图书馆"))
             }
         }]), t
     }(c["default"].Component);
