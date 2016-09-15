@@ -1,20 +1,9 @@
-
-body {
-    box-sizing: border-box;
-    color: #333;
-    background: #fff;
-    font-size: 16px;
-    font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-}
-
 h1 {
     padding-top: 30px;
     margin-bottom: 20px;
     font-weight: 700;
     color: #222222;
-    font-family: sans-serif,'Lucida Grande', 'Calibri', Helvetica, Arial;
+    font-family: sans-serif, 'Lucida Grande', 'Calibri', Helvetica, Arial;
     letter-spacing: -1px;
     text-align: center;
 }
@@ -24,7 +13,7 @@ h2, h3, h4, h5, h6 {
     margin-bottom: 20px;
     font-weight: 700;
     color: #222222;
-    font-family: sans-serif,'Lucida Grande', 'Calibri', Helvetica, Arial;
+    font-family: sans-serif, 'Lucida Grande', 'Calibri', Helvetica, Arial;
     letter-spacing: -1px;
     text-align: left;
 }
@@ -34,7 +23,7 @@ h1 {
     font-weight: 700;
 }
 
-h2{
+h2 {
     padding-bottom: 10px;
     font-size: 32px;
     border-bottom: 1px solid #e85c37;
@@ -47,7 +36,7 @@ h3 {
 h4 {
     font-size: 25px;
     padding-top: 30px;
-    padding:20px;
+    padding: 20px;
 }
 
 h5 {
@@ -67,13 +56,13 @@ footer p {
 }
 
 a {
-    text-decoration:none;
+    text-decoration: none;
     color: #2d383a;
     font-size: large;
 }
 
 a:hover, a:focus {
-    text-decoration: none;
+    text-decoration: blink;
     color: #C6E746;
 }
 
@@ -222,7 +211,7 @@ Full-Width Styles
 .inner {
     position: relative;
     max-width: 1024px;
-    padding: 20px 10px;
+    padding: 10px 10px;
     margin: 0 auto;
 }
 
@@ -258,11 +247,11 @@ Full-Width Styles
 
 #header_wrap {
     background: #2d383a;
-    color:#fff;
+    color: #fff;
 }
 
 #header_wrap .inner {
-    padding: 50px 10px 30px 10px;
+    padding: 10px 10px 10px 10px;
 }
 
 #project_title {
@@ -279,7 +268,6 @@ Full-Width Styles
     font-weight: 300;
 }
 
-
 #main_content_wrap {
     background: #f2f2f2;
 }
@@ -292,8 +280,8 @@ Full-Width Styles
     background: #333;
     padding-top: 60px;
     padding-bottom: 60px;
-    background: -webkit-linear-gradient(top,#2d383a 0,#14191a 100%);
-    background: linear-gradient(to bottom,#2d383a 0,#14191a 100%);
+    background: -webkit-linear-gradient(top, #2d383a 0, #14191a 100%);
+    background: linear-gradient(to bottom, #2d383a 0, #14191a 100%);
     color: #fff;
     box-shadow: inset 0 0 20px #000;
 }
