@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:wb="http://open.weibo.com/wb">
 <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -9,6 +9,7 @@
 
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" type="text/css" media="screen" href="css/home.css">
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
 
 
     <title>光剑免费图书馆 Free Ebook: 全球免费开放的电子图书馆</title>
@@ -147,36 +148,6 @@
 
             </table>
 
-
-            <!-- 百度分享 -->
-            <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone"
-                                                                                              data-cmd="qzone"></a><a
-                    href="#" class="bds_tsina" data-cmd="tsina"></a><a href="#" class="bds_tqq" data-cmd="tqq"></a><a
-                    href="#" class="bds_renren" data-cmd="renren"></a><a href="#" class="bds_weixin"
-                                                                         data-cmd="weixin"></a></div>
-            <script>window._bd_share_config = {
-                "common": {
-                    "bdSnsKey": {},
-                    "bdText": "",
-                    "bdMini": "2",
-                    "bdPic": "",
-                    "bdStyle": "0",
-                    "bdSize": "16"
-                },
-                "share": {},
-                "image": {
-                    "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
-                    "viewText": "分享到：",
-                    "viewSize": "16"
-                },
-                "selectShare": {
-                    "bdContainerClass": null,
-                    "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]
-                }
-            };
-            with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
-
-
             <h2 class="pull-left">馆藏图书检索</h2>
 
             <table>
@@ -199,6 +170,8 @@
             <tr>
                 <td><a href="mooc.html">MOOC公开课</a></td>
                 <td><a href="world_free_ebooks.html">全球免费电子图书资源</a></td>
+            </tr>
+            <tr>
                 <td><a href="http://www.gutenberg.org/">Gutenberg:古腾堡计划</a></td>
                 <td><a href="https://www.wdl.org/">世界数字图书馆</a></td>
             </tr>
@@ -213,19 +186,18 @@
                 <tr>
                     <td><a href="game/russia_square/index.html">俄罗斯方块</a></td>
                     <td><a href="game/fruit_ninja/index.html">水果忍者</a></td>
-                    <td><a href="game/chinese_chess/index.html">中国象棋</a></td>
                 </tr>
-
                 <tr>
+                    <td><a href="game/chinese_chess/index.html">中国象棋</a></td>
+
                     <td><a href="game/gravity/index.html">重力积木</a></td>
+                </tr>
+                <tr>
                     <td><a href="game/galactic_plunder/index.html">战机游戏</a></td>
                     <td><a href="game/flappy_bird/index.html">飞翔的小鸟</a></td>
                 </tr>
-
-
                 <tr>
                     <td><a href="game/solar/index.html">模拟太阳系</a></td>
-                    <td><a href="#"></a></td>
                     <td><a href="#"></a></td>
                 </tr>
 
@@ -233,6 +205,15 @@
             </table>
         </div>
 
+        <h2>关于我们</h2>
+        <div style="padding: 20px">
+
+            <wb:follow-button uid="2102737845" type="gray_3" width="100%" height="30"></wb:follow-button>
+
+            <a href="https://twitter.com/universsky" class="twitter-follow-button" data-show-count="false">Follow@Free-Ebook
+                光剑免费图书馆 </a>
+            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
 
     </section>
 
@@ -246,7 +227,6 @@
 
         <p style="color:#8c8c8c">(如果您有好的书籍推荐, 请联系我.)</p>
 
-        <hr>
         <article>
 
             <p>
@@ -261,7 +241,33 @@
             <p>读书使人充实，讨论使人机智，笔记使人准确，读史使人明智，读诗使人灵秀，数学使人周密，科学使人深刻，伦理使人庄重，逻辑修辞使人善辩。凡有所学，皆成性格。</p>
 
         </article>
-
+        <!-- 百度分享 -->
+        <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone"
+                                                                                          data-cmd="qzone"></a><a
+                href="#" class="bds_tsina" data-cmd="tsina"></a><a href="#" class="bds_tqq" data-cmd="tqq"></a><a
+                href="#" class="bds_renren" data-cmd="renren"></a><a href="#" class="bds_weixin"
+                                                                     data-cmd="weixin"></a></div>
+        <script>window._bd_share_config = {
+            "common": {
+                "bdSnsKey": {},
+                "bdText": "",
+                "bdMini": "2",
+                "bdPic": "",
+                "bdStyle": "0",
+                "bdSize": "16"
+            },
+            "share": {},
+            "image": {
+                "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
+                "viewText": "分享到：",
+                "viewSize": "16"
+            },
+            "selectShare": {
+                "bdContainerClass": null,
+                "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]
+            }
+        };
+        with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
 
     </footer>
 </div>
