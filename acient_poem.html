@@ -34,7 +34,7 @@
     <script src="//cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
 
     <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="//cdn.bootcss.com/datatables/1.10.10/css/dataTables.bootstrap.min.css" rel="stylesheet">
+
     <link href="//cdn.bootcss.com/datatables/1.10.10/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/datatables/1.10.10/css/jquery.dataTables_themeroller.css" rel="stylesheet">
 
@@ -49,6 +49,44 @@
 
 <!-- HEADER -->
 <div id="header_wrap" class="outer">
+
+
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"> 光剑免费图书馆 Free Ebook </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="classic.html">经典畅销书</a></li>
+                    <li><a href="china_classic.html">中国古典文学</a></li>
+                    <li><a href="biography.html">人物传记</a></li>
+                    <li><a href="medicine.html">中医养生</a></li>
+                    <li><a href="love.html">两性爱情</a></li>
+                    <li><a href="computer.html">计算机编程</a></li>
+                    <li><a href="swordmen_novel.html">武侠小说</a></li>
+                    <li><a href="guanchang_shangzhan.html">官场商战</a></li>
+                    <li><a href="work.html">职场工作</a></li>
+                    <li><a href="financial_investment.html">理财投资</a></li>
+                    <li><a href="ibooks.html">光剑阅读小馆</a></li>
+
+                </ul>
+
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+
     <header class="inner">
         <!--<a id="forkme_banner" href="https://github.com/universsky">View on GitHub </a>-->
         <a id="home_banner" href="index.html">主页</a>
@@ -67,7 +105,7 @@
             <a href="index.html"><h2>光剑免费图书馆</h2></a>
 
             <h4>古代文献藏书 诗藏</h4>
-            <table id="dataTable" class="table table-hover table-striped">
+            <table id="dataTable" class="table table-hover table-responsive">
                 <thead>
                 <tr>
                     <th>ID</th>

@@ -7,6 +7,20 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="description" content="Free Ebook 免费电子书 免费epub电子书 电子书大全 电子书下载 光剑免费图书馆 全球免费开放的电子图书馆 東海陳光劍的博客">
 
+
+    <!-- jquery, bootstrap,dataTables -->
+
+    <script src="//cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="//cdn.bootcss.com/datatables/1.10.10/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/datatables/1.10.10/css/jquery.dataTables_themeroller.css" rel="stylesheet">
+
+    <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="//cdn.bootcss.com/datatables/1.10.10/js/dataTables.bootstrap.min.js"></script>
+    <script src="//cdn.bootcss.com/datatables/1.10.10/js/jquery.dataTables.min.js"></script>
+
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" type="text/css" media="screen" href="css/home.css">
 
@@ -36,7 +50,46 @@
 
 <!-- HEADER -->
 <div id="header_wrap" class="outer">
+
+
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"> 光剑免费图书馆 Free Ebook </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="classic.html">经典畅销书</a></li>
+                    <li><a href="china_classic.html">中国古典文学</a></li>
+                    <li><a href="biography.html">人物传记</a></li>
+                    <li><a href="medicine.html">中医养生</a></li>
+                    <li><a href="love.html">两性爱情</a></li>
+                    <li><a href="computer.html">计算机编程</a></li>
+                    <li><a href="swordmen_novel.html">武侠小说</a></li>
+                    <li><a href="guanchang_shangzhan.html">官场商战</a></li>
+                    <li><a href="work.html">职场工作</a></li>
+                    <li><a href="financial_investment.html">理财投资</a></li>
+                    <li><a href="ibooks.html">光剑阅读小馆</a></li>
+
+                </ul>
+
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+
     <header class="inner">
+
         <!--<a id="forkme_banner" href="https://github.com/universsky">View on GitHub </a>-->
         <a id="home_banner" href="index.html">主页</a>
         <h1 id="project_title">光剑免费图书馆 Free Ebook</h1>
@@ -51,7 +104,7 @@
         <div class="container-fluid">
             <h2>图书馆类目</h2>
 
-            <table class="table table-hover table-responsive">
+            <table class="table table-hover">
                 <tbody>
                 <tr> 
                     <td><a href="classic.html"> 经典畅销书 </a></td>
@@ -62,7 +115,7 @@
                 </tr>
 
                 <tr>
-                    <td><a href="biography.html"> 人物传记 </a></td>
+                    <td><a href="biography.html">人物传记 </a></td>
                     <td><a href="literature.html">文学名著</a></td>
                     <td><a href="military.html">历史军事</a></td>
                     <td><a href="youth.html">青春校园</a></td>
@@ -183,7 +236,7 @@
 
         <h2>经典免费小游戏</h2>
         <div class="row-fluid">
-            <table class="table table-hover table-striped">
+            <table class="table table-hover">
                 <tbody>
                 <tr>
                     <td><a href="game/russia_square/index.html">俄罗斯方块</a></td>
